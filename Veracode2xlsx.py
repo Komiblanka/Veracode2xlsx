@@ -15,14 +15,16 @@ def create_excel(Flaws):
     flaws_sheet = book.create_sheet()
     flaws_sheet.title = "Flaws"
 	
-    modules_sheet = book.create_sheet()
-    modules_sheet.title = "Modules"
+    libraries_sheet = book.create_sheet()
+    libraries_sheet.title = "Libraries"
+    
+    
 
     # Preparing Stats sheet
     stats_sheet.cell(row = 1, column = 1).value = "Severity"
-    stats_sheet.cell(row = 1, column = 2).value = "DB"
+    stats_sheet.cell(row = 1, column = 2).value = "Main Client"
     stats_sheet.cell(row = 1, column = 3).value = "Third Party"
-    stats_sheet.cell(row = 1, column = 4).value = "Company"
+    stats_sheet.cell(row = 1, column = 4).value = "MyCompany"
     stats_sheet.cell(row = 1, column = 5).value = "?"
     stats_sheet.cell(row = 1, column = 6).value = "Fix by Policy"
     stats_sheet.cell(row = 1, column = 7).value = "Comments"
@@ -34,11 +36,11 @@ def create_excel(Flaws):
     stats_sheet.cell(row = 6, column= 1).value = 1
     stats_sheet.cell(row = 7, column= 1).value = "Total"
     
-    stats_sheet.cell(row = 2, column = 2).value = '=COUNTIFS(Flaws!F:F,"5",Flaws!G:G,"DB")'   
-    stats_sheet.cell(row = 3, column = 2).value = '=COUNTIFS(Flaws!F:F,"4",Flaws!G:G,"DB")'
-    stats_sheet.cell(row = 4, column = 2).value = '=COUNTIFS(Flaws!F:F,"3",Flaws!G:G,"DB")'   
-    stats_sheet.cell(row = 5, column = 2).value = '=COUNTIFS(Flaws!F:F,"2",Flaws!G:G,"DB")'   
-    stats_sheet.cell(row = 6, column = 2).value = '=COUNTIFS(Flaws!F:F,"1",Flaws!G:G,"DB")'
+    stats_sheet.cell(row = 2, column = 2).value = '=COUNTIFS(Flaws!F:F,"5",Flaws!G:G,"Main Client")'   
+    stats_sheet.cell(row = 3, column = 2).value = '=COUNTIFS(Flaws!F:F,"4",Flaws!G:G,"Main Client")'
+    stats_sheet.cell(row = 4, column = 2).value = '=COUNTIFS(Flaws!F:F,"3",Flaws!G:G,"Main Client")'   
+    stats_sheet.cell(row = 5, column = 2).value = '=COUNTIFS(Flaws!F:F,"2",Flaws!G:G,"Main Client")'   
+    stats_sheet.cell(row = 6, column = 2).value = '=COUNTIFS(Flaws!F:F,"1",Flaws!G:G,"Main Client")'
     stats_sheet.cell(row = 7, column = 2).value = "=SUM(B2:B6)"
 
     stats_sheet.cell(row = 2, column = 3).value = '=COUNTIFS(Flaws!F:F,"5",Flaws!G:G,"Third Party")'
@@ -48,11 +50,11 @@ def create_excel(Flaws):
     stats_sheet.cell(row = 6, column = 3).value = '=COUNTIFS(Flaws!F:F,"1",Flaws!G:G,"Third Party")'
     stats_sheet.cell(row = 7, column = 3).value = "=SUM(C2:C6)"
    
-    stats_sheet.cell(row = 2, column = 4).value = '=COUNTIFS(Flaws!F:F,"5",Flaws!G:G,"Company")'
-    stats_sheet.cell(row = 3, column = 4).value = '=COUNTIFS(Flaws!F:F,"4",Flaws!G:G,"Company")'
-    stats_sheet.cell(row = 4, column = 4).value = '=COUNTIFS(Flaws!F:F,"3",Flaws!G:G,"Company")'
-    stats_sheet.cell(row = 5, column = 4).value = '=COUNTIFS(Flaws!F:F,"2",Flaws!G:G,"Company")'
-    stats_sheet.cell(row = 6, column = 4).value = '=COUNTIFS(Flaws!F:F,"1",Flaws!G:G,"Company")'
+    stats_sheet.cell(row = 2, column = 4).value = '=COUNTIFS(Flaws!F:F,"5",Flaws!G:G,"MyCompany")'
+    stats_sheet.cell(row = 3, column = 4).value = '=COUNTIFS(Flaws!F:F,"4",Flaws!G:G,"MyCompany")'
+    stats_sheet.cell(row = 4, column = 4).value = '=COUNTIFS(Flaws!F:F,"3",Flaws!G:G,"MyCompany")'
+    stats_sheet.cell(row = 5, column = 4).value = '=COUNTIFS(Flaws!F:F,"2",Flaws!G:G,"MyCompany")'
+    stats_sheet.cell(row = 6, column = 4).value = '=COUNTIFS(Flaws!F:F,"1",Flaws!G:G,"MyCompany")'
     stats_sheet.cell(row = 7, column = 4).value = "=SUM(D2:D6)"
     
     stats_sheet.cell(row = 2, column = 5).value = '=COUNTIFS(Flaws!F:F,"5",Flaws!G:G,"?")'
@@ -74,19 +76,21 @@ def create_excel(Flaws):
     flaws_sheet.cell(row = 1, column = 1).value = "Flaw id"
     flaws_sheet.cell(row = 1, column = 2).value = "Category"
     flaws_sheet.cell(row = 1, column = 3).value = "Sub Category"
-    flaws_sheet.cell(row = 1, column = 4).value = "File Path"
-    flaws_sheet.cell(row = 1, column = 5).value = "Line"
-    flaws_sheet.cell(row = 1, column = 6).value = "Severity"
-    flaws_sheet.cell(row = 1, column = 7).value = "Propietary"
+    flaws_sheet.cell(row = 1, column = 4).value = "Library"
+    flaws_sheet.cell(row = 1, column = 5).value = "File Path"
+    flaws_sheet.cell(row = 1, column = 6).value = "Line"
+    flaws_sheet.cell(row = 1, column = 7).value = "Severity"
+    flaws_sheet.cell(row = 1, column = 8).value = "Propietary"
     
 
-    # Preparing Modules sheet
+    # Preparing Libraries sheet
     
-    modules_sheet.cell(row = 1, column = 1).value = "Module"
-    modules_sheet.cell(row = 1, column = 2).value = "Propietary"
+    libraries_sheet.cell(row = 1, column = 1).value = "Library"
+    libraries_sheet.cell(row = 1, column = 2).value = "Propietary"
     
-    vulnerable_modules = set()    
-        
+    
+    
+    vulnerable_libraries = set()
     counter = 1
     
     # Writing all the flaws
@@ -94,6 +98,7 @@ def create_excel(Flaws):
         counter += 1
         flaw = flaw_category[0]
         category = flaw_category[1]
+        compiled = False
         
         # Flaw id
         flaws_sheet.cell(row = counter, column = 1).value = int(flaw.get("issueid"))
@@ -101,27 +106,42 @@ def create_excel(Flaws):
         flaws_sheet.cell(row = counter, column = 2).value = category
         # Sub Category
         flaws_sheet.cell(row = counter, column = 3).value = flaw.get("categoryname")
+        # Library
+        flaws_sheet.cell(row = counter, column = 4).value = flaw.get("module")
+        # File path
         pathfile = flaw.get("sourcefilepath") + flaw.get("sourcefile")
-        flaws_sheet.cell(row = counter, column = 4).value = pathfile
-        vulnerable_modules.add(pathfile)
+        
+        if not pathfile:
+            compiled = True
+        if compiled:
+            pathfile = "Compiled library (check report): " + flaw.get("module")
+        flaws_sheet.cell(row = counter, column = 5).value = pathfile
+        vulnerable_libraries.add(flaw.get("module"))
         # Line
-        flaws_sheet.cell(row = counter, column = 5).value = int(flaw.get("line"))
+        if not compiled:
+            flaws_sheet.cell(row = counter, column = 6).value = int(flaw.get("line"))
+        else:
+            flaws_sheet.cell(row = counter, column = 6).value = "Vulnerable class: " + flaw.get("functionprototype") + " at " + flaw.get("functionrelativelocation") + "%"
         # Severity
-        flaws_sheet.cell(row = counter, column = 6).value = int(flaw.get("severity"))
+        flaws_sheet.cell(row = counter, column = 7).value = int(flaw.get("severity"))
         # Propietary
-        flaws_sheet.cell(row = counter, column = 7).value = "=VLOOKUP(D" + str(counter+1) + ",Modules!A:B,2,FALSE)"
+        flaws_sheet.cell(row = counter, column = 8).value = "=VLOOKUP(D" + str(counter) + ",Libraries!A:B,2,FALSE)"
     
     
     counter = 1
     
-    vulnerable_modules = list(vulnerable_modules)
-    vulnerable_modules.sort()
+    vulnerable_libraries = list(vulnerable_libraries)
+    vulnerable_libraries.sort()
+    
+    libraries = set()
  
-    # Writing all vulnerable modules
-    for module in vulnerable_modules:
+    # Writing all vulnerable libraries
+    for library in vulnerable_libraries:
         counter += 1
-        modules_sheet.cell(row = counter, column = 1).value = module
-        
+        libraries_sheet.cell(row = counter, column = 1).value = library # File
+    
+    
+    
     return book
 
 
@@ -158,12 +178,14 @@ for severity in root.findall("{https://www.veracode.com/schema/reports/export/1.
 print "Parsing done correctly."
 
 print "Creating excel file..."
+print ""
+
 book = create_excel(Flaws)
 
 book.save(outxls)
 
 print "Excel file: " + outxls + " built correctly!"
 print ""
-print "Now fill in the propietary of each of the modules!"
+print "Now fill in the propietary column for each of the libraries!"
 print ""
 
