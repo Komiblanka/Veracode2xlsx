@@ -7,7 +7,7 @@ import os
 def create_excel(Flaws):
 
    # Creating book and 2 sheets
-    book = Workbook(data_only=False, guess_types=False)
+    book = Workbook()
 	
     stats_sheet = book.active
     stats_sheet.title = "Stats"
