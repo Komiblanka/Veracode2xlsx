@@ -7,7 +7,7 @@ import os
 def create_excel(Flaws):
 
    # Creating book and 2 sheets
-    book = Workbook(data_only=False, guess_types=False)
+    book = Workbook()
 	
     stats_sheet = book.active
     stats_sheet.title = "Stats"
@@ -109,7 +109,8 @@ def create_excel(Flaws):
         # Library
         flaws_sheet.cell(row = counter, column = 4).value = flaw.get("module")
         # File path
-        pathfile = flaw.get("sourcefilepath") + flaw.get("sourcefile")
+        pathfile = str(flaw.get("sourcefilepath")) + str(flaw.get("sourcefile"))
+
         
         if not pathfile:
             compiled = True
@@ -119,11 +120,12 @@ def create_excel(Flaws):
         vulnerable_libraries.add(flaw.get("module"))
         # Line
         if not compiled:
-            flaws_sheet.cell(row = counter, column = 6).value = int(flaw.get("line"))
+            # flaws_sheet.cell(row = counter, column = 6).value = int(flaw.get("line"))
+            flaws_sheet.cell(row = counter, column = 6).value = str(flaw.get("line"))
         else:
-            flaws_sheet.cell(row = counter, column = 6).value = "Vulnerable class: " + flaw.get("functionprototype") + " at " + flaw.get("functionrelativelocation") + "%"
+            flaws_sheet.cell(row = counter, column = 6).value = "Vulnerable class: " + str(flaw.get("functionprototype")) + " at " + str(flaw.get("functionrelativelocation")) + "%"
         # Severity
-        flaws_sheet.cell(row = counter, column = 7).value = int(flaw.get("severity"))
+        flaws_sheet.cell(row = counter, column = 7).value = str(flaw.get("severity"))
         # Propietary
         flaws_sheet.cell(row = counter, column = 8).value = "=VLOOKUP(D" + str(counter) + ",Libraries!A:B,2,FALSE)"
     
