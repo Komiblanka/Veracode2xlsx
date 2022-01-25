@@ -7,7 +7,7 @@ import os
 def create_excel(Flaws):
 
    # Creating book and 2 sheets
-    book = Workbook(data_only=False, guess_types=False)
+    book = Workbook()
 	
     stats_sheet = book.active
     stats_sheet.title = "Stats"
@@ -158,7 +158,7 @@ inxml = args.infile
 outxls = args.outfile
 
 if not(os.path.isfile(inxml)):
-    print inxml + "doesn't exist."
+    print(inxml + "doesn't exist.")
     exit()
 
 # Preparing to parse XML
@@ -167,25 +167,24 @@ root = tree.getroot()
 
 Flaws = []
 
-print ""
-print "Parsing..."
+print("")
+print("Parsing...")
 # Go through the XML and create a list of lists of flaws to be able to associate a flaw to a category. Please note the namespace when finding nodes
 for severity in root.findall("{https://www.veracode.com/schema/reports/export/1.0}severity"):
     for category in severity:
         for flaw in category.iter("{https://www.veracode.com/schema/reports/export/1.0}flaw"):
             Flaws.append([flaw, category.get("categoryname")])
 
-print "Parsing done correctly."
+print("Parsing done correctly.")
 
-print "Creating excel file..."
-print ""
+print("Creating excel file...")
+print("")
 
 book = create_excel(Flaws)
 
 book.save(outxls)
 
-print "Excel file: " + outxls + " built correctly!"
-print ""
-print "Now fill in the propietary column for each of the libraries!"
-print ""
-
+print("Excel file: " + outxls + " built correctly!")
+print("")
+print("Now fill in the propietary column for each of the libraries!")
+print("")
